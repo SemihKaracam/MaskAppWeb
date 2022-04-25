@@ -1,5 +1,3 @@
-
-
 from flask import Flask, request,jsonify
 from flask_pymongo import PyMongo,ObjectId
 from flask_cors import CORS
@@ -7,6 +5,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 cors = CORS(app)
 app.config["MONGO_URI"] = "mongodb://localhost/maskapp"
+
 mongo = PyMongo(app)
 
 db = mongo.db.users
@@ -17,19 +16,24 @@ db = mongo.db.users
 # import json
 # url = "http://localhost:5000/posts"
 
-# payload={
+# data={
 #     "name":"Cem",
 #     "email":"cem@gmail.com",
 #     "number":"2848887",
 #     "image":"https://m.media-amazon.com/images/M/MV5BMTI3ODc2ODc0M15BMl5BanBnXkFtZTYwMjgzNjc3._V1_.jpg"
 # }
 
+
+# headers={
+#     "content-type": "application/json"
+# }
 # i=0
 # while(i<10):
 #     if(i%2==0):
-#         response = requests.post(url,data = json.dumps(payload))
-#         print(response)
+#         response = requests.post(url,data = json.dumps(data),headers=headers) # 2.parametrede data dictionary'mizi json formatına dönüştürüp backenda yolladık, 3.parametrede headers içerisine json yazarak requeste dönecek olan response'un veri formatının json olacağını bildirdik 
+#         print(response.text)
 #     i+=1
+
 ####################################################
 
 @app.route("/",methods=["GET"])
@@ -54,12 +58,6 @@ def createUser():
 
 @app.route("/posts/<id>",methods=["PUT"])
 def updateUser(id):
-    user = {"name":request.json["name"],
-            "email":request.json["email"],
-            "cezapuani":request.json["cezapuani"],
-            "number":request.json["number"],
-            "image":request.json["image"],
-            }
     user = db.find_one({"_id":ObjectId(id)})
     cezapuani = str(int(user["cezapuani"]) + 10)
     db.update_one({"_id":ObjectId(id)},{"$set":{

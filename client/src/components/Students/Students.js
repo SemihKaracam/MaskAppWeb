@@ -16,7 +16,7 @@ const Students = () => {
     }
     useEffect(() => {
         fetchUsers()
-    }, [students])
+    }, [])
     const classes = useStyles()
     return (
         <Grid className={classes.container} container alignItems="stretch" spacing={3}>
