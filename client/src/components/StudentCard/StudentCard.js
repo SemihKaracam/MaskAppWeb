@@ -4,12 +4,13 @@ import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import useStyles from './styles';
+// image={`./${student.image}`} Localden resim yükleme
 
-const StudentCard = ({student}) => {
-    const classes = useStyles()
+const StudentCard = ({ student }) => {
+  const classes = useStyles()
   return (
     <Card className={classes.card}>
-      <CardMedia className={classes.media} image={student.image} />
+      <CardMedia className={classes.media} image={student.image}/>
       <div className={classes.overlay}>
         <Typography variant="h6">{student.name}</Typography>
       </div>

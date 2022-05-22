@@ -11,7 +11,6 @@ const Students = () => {
     const [students, setStudents] = useState([])
     const fetchUsers = async () => {
         const { data } = await axios.get(url)
-        console.log(data.res)
         setStudents([...data.res])
     }
     useEffect(() => {
