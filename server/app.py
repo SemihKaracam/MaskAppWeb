@@ -7,7 +7,7 @@ from pymongo import MongoClient
 
 app = Flask(__name__)
 try:
-    client = MongoClient("mongodb+srv://semih:semih123@cluster0.ceuft.mongodb.net/?retryWrites=true&w=majority")
+    client = MongoClient("DB_CONNECTION_URL")
     db = client["test"]
     collection = db["users"]
     print("Baglanti kuruldu")
